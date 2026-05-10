@@ -15,9 +15,9 @@ const spaceGrotesk = Space_Grotesk({
 });
 
 export const metadata: Metadata = {
-  title: "IU — Creative Developer & Designer",
+  title: "Mohan Rathod — Creative Developer & Designer",
   description:
-    "Portfolio of IU — a creative developer crafting immersive, high-performance web experiences with Next.js, Three.js, GSAP, and WebGL.",
+    "Portfolio of Mohan Rathod — a creative developer crafting immersive, high-performance web experiences with Next.js, Three.js, GSAP, and WebGL.",
   keywords: [
     "creative developer",
     "web designer",
@@ -29,9 +29,9 @@ export const metadata: Metadata = {
     "animation",
     "frontend",
   ],
-  authors: [{ name: "IU" }],
+  authors: [{ name: "Mohan Rathod" }],
   openGraph: {
-    title: "IU — Creative Developer & Designer",
+    title: "Mohan Rathod — Creative Developer & Designer",
     description:
       "Immersive 3D scrolling portfolio with cinematic animations and premium interactions.",
     type: "website",

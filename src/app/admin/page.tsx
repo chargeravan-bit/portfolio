@@ -19,6 +19,7 @@ export default function AdminDashboard() {
   const router = useRouter();
   const [projects, setProjects] = useState(initialProjects);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [activeTab, setActiveTab] = useState<'projects' | 'settings'>('projects');
 
   const handleDelete = (id: number) => {
     setProjects(projects.filter(p => p.id !== id));
@@ -38,11 +39,25 @@ export default function AdminDashboard() {
         </div>
         
         <nav className="flex-1 p-4 space-y-2">
-          <button className="w-full flex items-center gap-3 px-4 py-3 rounded-xl bg-amber-500/10 text-amber-500 border border-amber-500/20 font-medium transition-all">
+          <button 
+            onClick={() => setActiveTab('projects')}
+            className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl transition-all font-medium ${
+              activeTab === 'projects' 
+                ? 'bg-amber-500/10 text-amber-500 border border-amber-500/20' 
+                : 'text-white/50 hover:bg-white/5 hover:text-white border border-transparent'
+            }`}
+          >
             <FolderGit2 size={18} />
             Projects
           </button>
-          <button className="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-white/50 hover:bg-white/5 hover:text-white transition-all">
+          <button 
+            onClick={() => setActiveTab('settings')}
+            className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl transition-all font-medium ${
+              activeTab === 'settings' 
+                ? 'bg-amber-500/10 text-amber-500 border border-amber-500/20' 
+                : 'text-white/50 hover:bg-white/5 hover:text-white border border-transparent'
+            }`}
+          >
             <Settings size={18} />
             Settings
           </button>
@@ -69,19 +84,25 @@ export default function AdminDashboard() {
           <header className="flex justify-between items-end mb-10 border-b border-white/5 pb-6">
             <div>
               <p className="text-amber-500 text-sm tracking-widest uppercase mb-2">Overview</p>
-              <h1 className="text-3xl font-bold" style={{ fontFamily: 'var(--font-heading)' }}>Manage Projects</h1>
+              <h1 className="text-3xl font-bold" style={{ fontFamily: 'var(--font-heading)' }}>
+                {activeTab === 'projects' ? 'Manage Projects' : 'Workspace Settings'}
+              </h1>
             </div>
             
-            <button 
-              onClick={() => setIsModalOpen(true)}
-              className="flex items-center gap-2 px-6 py-3 rounded-full bg-amber-500 text-black font-semibold hover:bg-amber-400 transition-all shadow-[0_0_20px_rgba(245,158,11,0.3)]"
-            >
-              <Plus size={18} />
-              New Project
-            </button>
+            {activeTab === 'projects' && (
+              <button 
+                onClick={() => setIsModalOpen(true)}
+                className="flex items-center gap-2 px-6 py-3 rounded-full bg-amber-500 text-black font-semibold hover:bg-amber-400 transition-all shadow-[0_0_20px_rgba(245,158,11,0.3)]"
+              >
+                <Plus size={18} />
+                New Project
+              </button>
+            )}
           </header>
 
-          {/* Filters/Search */}
+          {activeTab === 'projects' ? (
+            <>
+              {/* Filters/Search */}
           <div className="flex gap-4 mb-8">
             <div className="relative flex-1 glass rounded-xl border border-white/10 flex items-center px-4 py-3">
               <Search size={18} className="text-white/40 mr-3" />
@@ -143,6 +164,41 @@ export default function AdminDashboard() {
               </tbody>
             </table>
           </div>
+            </>
+          ) : (
+            <div className="glass rounded-2xl p-8 border border-white/5 space-y-8">
+              <div>
+                <h3 className="text-lg font-medium mb-4">Profile Information</h3>
+                <div className="grid grid-cols-2 gap-6">
+                  <div>
+                    <label className="block text-xs uppercase tracking-widest text-white/50 mb-2">Display Name</label>
+                    <input type="text" defaultValue="Mohan Rathod" className="w-full bg-black/40 border border-white/10 rounded-xl px-4 py-3 outline-none focus:border-amber-500/50 transition-colors" />
+                  </div>
+                  <div>
+                    <label className="block text-xs uppercase tracking-widest text-white/50 mb-2">Email Address</label>
+                    <input type="email" defaultValue="mohanlaxmanrathod@outlook.com" className="w-full bg-black/40 border border-white/10 rounded-xl px-4 py-3 outline-none focus:border-amber-500/50 transition-colors" />
+                  </div>
+                </div>
+              </div>
+              
+              <div className="pt-6 border-t border-white/5">
+                <h3 className="text-lg font-medium mb-4">Website Appearance</h3>
+                <div className="flex items-center justify-between p-4 rounded-xl border border-white/10 bg-white/[0.02]">
+                  <div>
+                    <div className="font-medium">Golden Luxury Theme</div>
+                    <div className="text-sm text-white/50 mt-1">Uses amber and golden gradients globally.</div>
+                  </div>
+                  <div className="px-3 py-1 bg-amber-500/20 text-amber-500 text-xs rounded-full border border-amber-500/30">Active</div>
+                </div>
+              </div>
+
+              <div className="pt-6 flex justify-end">
+                <button className="px-6 py-3 rounded-xl bg-amber-500 hover:bg-amber-400 text-black font-semibold transition-all shadow-[0_0_15px_rgba(245,158,11,0.3)]">
+                  Save Changes
+                </button>
+              </div>
+            </div>
+          )}
 
         </div>
       </main>

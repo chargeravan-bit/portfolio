@@ -36,7 +36,7 @@ export default function LoadingScreen({ onComplete }: { onComplete: () => void }
     <div ref={loaderRef} className="loader">
       <div ref={textRef} className="flex flex-col items-center gap-6">
         <div style={{ fontFamily: 'var(--font-heading)' }} className="text-4xl font-bold tracking-tight">
-          <span className="gradient-text">IU</span>
+          <span className="gradient-text">Mohan</span>
           <span className="text-white/20 ml-3 text-2xl font-light">Portfolio</span>
         </div>
 

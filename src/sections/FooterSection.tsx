@@ -21,7 +21,7 @@ export default function FooterSection() {
               className="w-10 h-10 rounded-xl flex items-center justify-center font-bold text-lg"
               style={{ background: 'var(--accent-gradient)', fontFamily: 'var(--font-heading)' }}
             >
-              IU
+              MR
             </div>
             <span className="text-white/60 text-sm">Creative Developer</span>
           </div>
@@ -52,7 +52,7 @@ export default function FooterSection() {
           {/* Bottom row */}
           <div className="flex items-center justify-between w-full max-w-lg">
             <p className="text-xs text-white/25">
-              © {year} IU Portfolio. All rights reserved.
+              © {year} Mohan Rathod Portfolio. All rights reserved.
             </p>
             <p className="text-xs text-white/25">
               Built with <span className="gradient-text">Next.js</span> & ❤️
