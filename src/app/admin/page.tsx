@@ -2,7 +2,10 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
+import dynamic from 'next/dynamic';
 import { Plus, Edit2, Trash2, FolderGit2, Settings, LogOut, Search, X } from 'lucide-react';
+
+const CustomCursor = dynamic(() => import('@/components/CustomCursor'), { ssr: false });
 
 // Mock projects matching our portfolio
 const initialProjects = [
@@ -23,6 +26,7 @@ export default function AdminDashboard() {
 
   return (
     <div className="min-h-screen bg-[#050505] text-white flex select-none">
+      <CustomCursor />
       
       {/* Sidebar */}
       <aside className="w-64 border-r border-white/5 flex flex-col glass z-10 relative">
