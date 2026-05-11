@@ -137,15 +137,15 @@ export default function ProjectsSection() {
           </p>
         </div>
 
-        {/* Projects grid avoiding center */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        {/* Projects grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {projects.map((proj, i) => (
             <div
               key={proj.id}
               ref={el => { cardRefs.current[i] = el; }}
-              className={`relative rounded-3xl overflow-hidden group ${i % 2 === 0 ? 'lg:col-start-1' : 'lg:col-start-3'}`}
+              className="relative rounded-2xl overflow-hidden group glass-strong h-full flex flex-col"
               style={{
-                background: `linear-gradient(135deg, var(--bg-tertiary), ${proj.gradient.split(' ').pop()?.replace('/40', '')?.replace('to-', '') ?? 'var(--bg-primary)'})`,
+                background: `linear-gradient(135deg, var(--bg-tertiary), ${proj.gradient.split(' ').pop()?.replace('/40', '')?.replace('to-', '') ?? 'var(--bg-primary)'}33)`,
                 border: `1px solid ${hoveredId === proj.id ? proj.border : 'rgba(255,255,255,0.06)'}`,
                 boxShadow: hoveredId === proj.id ? `0 0 40px ${proj.glow}` : 'none',
                 transition: 'border-color 0.4s ease, box-shadow 0.4s ease',
@@ -157,44 +157,46 @@ export default function ProjectsSection() {
               data-cursor-hover
             >
               {/* Background gradient */}
-              <div className={`absolute inset-0 bg-gradient-to-br ${proj.gradient} opacity-60`} />
+              <div className={`absolute inset-0 bg-gradient-to-br ${proj.gradient} opacity-40`} />
 
               {/* Content */}
-              <div className="relative z-10 p-8">
+              <div className="relative z-10 p-8 flex flex-col h-full">
                 {/* Top row */}
                 <div className="flex items-start justify-between mb-6">
-                  <span className="text-amber-400">{proj.emoji}</span>
+                  <div className="p-3 rounded-xl bg-white/5 border border-white/10 text-amber-400">
+                    {proj.emoji}
+                  </div>
                   <div className="flex flex-col items-end gap-2">
-                    <span className="text-xs tracking-widest uppercase text-white/30">
+                    <span className="text-[10px] tracking-widest uppercase text-white/30 font-bold">
                       {proj.year}
                     </span>
-                    <span className="text-xs text-white/40 glass px-2.5 py-1 rounded-full">
+                    <span className="text-[10px] text-amber-500/80 glass-strong px-2.5 py-1 rounded-full border border-amber-500/20 font-medium">
                       {proj.category}
                     </span>
                   </div>
                 </div>
 
                 <h3
-                  className="text-2xl font-bold mb-3 transition-all duration-300"
+                  className="text-xl font-bold mb-3 transition-all duration-300"
                   style={{
                     fontFamily: 'var(--font-heading)',
-                    color: hoveredId === proj.id ? 'white' : 'rgba(255,255,255,0.85)',
+                    color: hoveredId === proj.id ? 'white' : 'rgba(255,255,255,0.9)',
                   }}
                 >
                   {proj.title}
                 </h3>
 
-                <p className="text-sm text-white/50 leading-relaxed mb-6">
+                <p className="text-sm text-white/50 leading-relaxed mb-6 flex-grow">
                   {proj.desc}
                 </p>
 
                 {/* Tech pills */}
-                <div className="flex flex-wrap gap-2 mb-6">
+                <div className="flex flex-wrap gap-2 mb-8">
                   {proj.tech.map(t => (
                     <span
                       key={t}
-                      className="text-xs px-3 py-1 rounded-full"
-                      style={{ background: 'rgba(255,255,255,0.06)', color: 'rgba(255,255,255,0.5)' }}
+                      className="text-[10px] px-2.5 py-1 rounded-lg border border-white/5"
+                      style={{ background: 'rgba(255,255,255,0.03)', color: 'rgba(255,255,255,0.4)' }}
                     >
                       {t}
                     </span>
@@ -202,20 +204,23 @@ export default function ProjectsSection() {
                 </div>
 
                 {/* CTA row */}
-                <div className="flex items-center gap-4">
+                <div className="mt-auto">
                   <button
-                    className="magnetic-btn py-2 px-5 text-xs"
-                    style={{ borderRadius: '50px' }}
+                    className="magnetic-btn w-full py-2.5 text-xs group/btn"
+                    style={{ borderRadius: '12px' }}
                     data-cursor-hover
                   >
-                    <span>View Project →</span>
+                    <span className="flex items-center justify-center gap-2">
+                      View Project 
+                      <span className="transition-transform duration-300 group-hover/btn:translate-x-1">→</span>
+                    </span>
                   </button>
                 </div>
               </div>
 
               {/* Hover glow border */}
               <div
-                className="absolute inset-0 rounded-3xl pointer-events-none transition-opacity duration-500"
+                className="absolute inset-0 rounded-2xl pointer-events-none transition-opacity duration-500"
                 style={{
                   boxShadow: `inset 0 0 60px ${proj.glow}`,
                   opacity: hoveredId === proj.id ? 1 : 0,
@@ -226,9 +231,9 @@ export default function ProjectsSection() {
         </div>
 
         {/* View all CTA */}
-        <div className="flex justify-center mt-12">
-          <button className="magnetic-btn" data-cursor-hover>
-            <span>View All Projects →</span>
+        <div className="flex justify-center mt-16">
+          <button className="magnetic-btn px-10" data-cursor-hover>
+            <span>Explore All Projects</span>
           </button>
         </div>
       </div>

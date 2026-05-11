@@ -108,49 +108,52 @@ export default function TimelineSection() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2">
-          {/* Put timeline entirely in the left column */}
-          <div className="relative max-w-lg">
-            {/* Left side line */}
-            <div
-              ref={lineRef}
-              className="absolute left-6 top-0 bottom-0 w-px"
-              style={{ background: 'linear-gradient(to bottom, var(--accent-cyan), var(--accent-blue), var(--accent-purple), var(--accent-pink))' }}
-            />
+        <div className="relative">
+          {/* Vertical line - Centered on desktop */}
+          <div
+            ref={lineRef}
+            className="absolute left-6 top-0 bottom-0 w-px -translate-x-1/2 hidden sm:block"
+            style={{ background: 'linear-gradient(to bottom, transparent, var(--accent-cyan), var(--accent-blue), var(--accent-purple), var(--accent-pink), transparent)' }}
+          />
 
-            {milestones.map((m, i) => (
+          <div className="space-y-12 relative">
+            {milestones.map((m) => (
               <div
                 key={m.year}
-                className="timeline-item relative flex items-start mb-16 last:mb-0 pl-16 text-left"
+                className="timeline-item relative flex items-start gap-8"
               >
-                {/* Center dot */}
-                <div className="absolute left-0 w-12 h-12 rounded-full flex items-center justify-center text-xl z-10"
+                {/* Dot */}
+                <div className="absolute left-6 -translate-x-1/2 w-10 h-10 rounded-full flex items-center justify-center text-lg z-10 hidden sm:flex"
                   style={{
-                    background: `${m.color}20`,
-                    border: `2px solid ${m.color}60`,
-                    boxShadow: `0 0 20px ${m.color}30`,
+                    background: `var(--bg-primary)`,
+                    border: `2px solid ${m.color}`,
+                    boxShadow: `0 0 15px ${m.color}40`,
                   }}
                 >
-                  {m.icon}
+                  <div className="w-2 h-2 rounded-full" style={{ background: m.color }} />
                 </div>
 
-                {/* Content card */}
-                <div className="glass rounded-2xl p-6 glow-border w-full">
-                  <span className="text-xs tracking-widest uppercase mb-2 block"
-                    style={{ color: m.color }}>
-                    {m.year}
-                  </span>
-                  <h3 className="font-bold text-lg mb-2" style={{ fontFamily: 'var(--font-heading)' }}>
-                    {m.title}
-                  </h3>
-                  <p className="text-sm text-white/50 leading-relaxed">{m.desc}</p>
+                {/* Content */}
+                <div className="w-full pl-16">
+                  <div className="glass-strong rounded-2xl p-8 glow-border relative">
+                    <div className="flex items-center gap-3 mb-4">
+                      <div className="p-2 rounded-lg bg-white/5 text-amber-500">
+                        {m.icon}
+                      </div>
+                      <span className="text-sm font-bold tracking-widest uppercase"
+                        style={{ color: m.color }}>
+                        {m.year}
+                      </span>
+                    </div>
+                    <h3 className="font-bold text-xl mb-3" style={{ fontFamily: 'var(--font-heading)' }}>
+                      {m.title}
+                    </h3>
+                    <p className="text-sm text-white/50 leading-relaxed">{m.desc}</p>
+                  </div>
                 </div>
               </div>
             ))}
           </div>
-
-          {/* Empty Right Column for center face separation */}
-          <div className="hidden lg:block pointer-events-none" />
         </div>
       </div>
     </section>

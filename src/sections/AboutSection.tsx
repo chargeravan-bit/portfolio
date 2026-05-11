@@ -88,10 +88,10 @@ export default function AboutSection() {
       }} />
 
       <div className="section-container">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
 
           {/* Left — Text */}
-          <div ref={textRef}>
+          <div ref={textRef} className="lg:pr-8">
             <p className="text-sm tracking-widest uppercase text-amber-400 mb-4 font-medium">
               About Me
             </p>
@@ -121,13 +121,10 @@ export default function AboutSection() {
             </div>
           </div>
 
-          {/* Empty Middle — To let face show through */}
-          <div className="hidden lg:block col-span-1 pointer-events-none" />
-
           {/* Right — Glass card */}
           <div ref={cardRef} className="relative" style={{ perspective: '1000px' }}>
             {/* Main glass card */}
-            <div className="glass-strong rounded-3xl p-8 relative overflow-hidden glow-border">
+            <div className="glass-strong rounded-2xl p-8 relative overflow-hidden glow-border">
               {/* Top accent line */}
               <div className="absolute top-0 left-8 right-8 h-px bg-gradient-to-r from-transparent via-amber-500/60 to-transparent" />
 

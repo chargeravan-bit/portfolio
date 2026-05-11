@@ -84,10 +84,10 @@ export default function SkillsSection() {
     >
       <div className="section-container">
         
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           
           {/* Left Column - Title & Tabs */}
-          <div ref={leftRef} className="col-span-1">
+          <div ref={leftRef}>
             <div className="mb-10 text-left">
               <p className="text-sm tracking-widest uppercase text-amber-500 mb-3 font-medium">
                 Expertise
@@ -102,16 +102,16 @@ export default function SkillsSection() {
             </div>
 
             {/* Tabs (Vertical layout) */}
-            <div className="flex flex-col gap-3">
+            <div className="flex flex-col gap-3 max-w-sm">
               {skillCategories.map((cat, i) => (
                 <button
                   key={cat.label}
                   onClick={() => setActiveTab(i)}
                   data-cursor-hover
-                  className={`flex items-center gap-3 px-5 py-4 rounded-2xl text-sm font-medium transition-all duration-400 ${
+                  className={`flex items-center gap-3 px-5 py-4 rounded-2xl text-sm font-medium transition-all duration-400 border ${
                     activeTab === i
-                      ? 'text-white shadow-lg'
-                      : 'glass text-white/50 hover:text-white/80'
+                      ? 'text-white border-amber-500/50'
+                      : 'glass text-white/50 hover:text-white/80 border-transparent'
                   }`}
                   style={
                     activeTab === i
@@ -126,12 +126,9 @@ export default function SkillsSection() {
             </div>
           </div>
 
-          {/* Empty Middle — To let face show through */}
-          <div className="hidden lg:block col-span-1 pointer-events-none" />
-
           {/* Right Column - Skills grid */}
-          <div ref={rightRef} className="col-span-1">
-            <div className="skill-card glass-strong rounded-3xl p-8 glow-border">
+          <div ref={rightRef}>
+            <div className="skill-card glass-strong rounded-2xl p-8 glow-border">
               <div className="flex items-center gap-3 mb-6">
                 <div
                   className={`w-12 h-12 rounded-xl flex items-center justify-center text-2xl bg-gradient-to-br ${category.color}`}

@@ -77,57 +77,29 @@ export default function TechStackSection() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-5 gap-8">
-          {/* Left block */}
-          <div ref={gridRef} className="col-span-2 grid grid-cols-2 gap-4">
-            {techStack.slice(0, 6).map((tech) => (
+        <div ref={gridRef} className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
+          {techStack.map((tech) => (
+            <div
+              key={tech.name}
+              className="tech-item glass rounded-xl p-6 flex flex-col items-center gap-4 group transition-all duration-300 hover:bg-white/[0.05]"
+              data-cursor-hover
+            >
               <div
-                key={tech.name}
-                className="tech-item glass rounded-2xl p-5 flex flex-col items-center gap-3 group glow-border"
-                data-cursor-hover
+                className="text-2xl w-14 h-14 flex items-center justify-center rounded-2xl transition-transform duration-500 group-hover:scale-110 shadow-lg"
+                style={{
+                  background: `${tech.color}10`,
+                  border: `1px solid ${tech.color}20`,
+                  color: tech.color,
+                }}
               >
-                <div
-                  className="text-2xl w-12 h-12 flex items-center justify-center rounded-xl transition-transform duration-300 group-hover:scale-110"
-                  style={{
-                    background: `${tech.color}15`,
-                    border: `1px solid ${tech.color}30`,
-                    color: tech.color,
-                  }}
-                >
-                  {tech.icon}
-                </div>
-                <span className="text-xs text-white/60 font-medium text-center">{tech.name}</span>
-                <span className="text-[10px] text-white/25 tracking-wide uppercase">{tech.category}</span>
+                {tech.icon}
               </div>
-            ))}
-          </div>
-
-          {/* Empty center */}
-          <div className="hidden lg:block col-span-1" />
-
-          {/* Right block */}
-          <div className="col-span-2 grid grid-cols-2 gap-4">
-            {techStack.slice(6, 12).map((tech) => (
-              <div
-                key={tech.name}
-                className="tech-item glass rounded-2xl p-5 flex flex-col items-center gap-3 group glow-border"
-                data-cursor-hover
-              >
-                <div
-                  className="text-2xl w-12 h-12 flex items-center justify-center rounded-xl transition-transform duration-300 group-hover:scale-110"
-                  style={{
-                    background: `${tech.color}15`,
-                    border: `1px solid ${tech.color}30`,
-                    color: tech.color,
-                  }}
-                >
-                  {tech.icon}
-                </div>
-                <span className="text-xs text-white/60 font-medium text-center">{tech.name}</span>
-                <span className="text-[10px] text-white/25 tracking-wide uppercase">{tech.category}</span>
+              <div className="text-center">
+                <span className="text-[11px] text-white/80 font-bold block mb-1">{tech.name}</span>
+                <span className="text-[9px] text-white/30 tracking-widest uppercase font-medium">{tech.category}</span>
               </div>
-            ))}
-          </div>
+            </div>
+          ))}
         </div>
 
         {/* Marquee row — extra soft logos */}
