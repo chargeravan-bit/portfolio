@@ -108,47 +108,47 @@ export default function TimelineSection() {
           </p>
         </div>
 
-        <div className="relative">
-          {/* Vertical line - Centered on desktop */}
+        <div className="relative max-w-3xl">
+          {/* Vertical line */}
           <div
             ref={lineRef}
-            className="absolute left-6 top-0 bottom-0 w-px -translate-x-1/2 hidden sm:block"
-            style={{ background: 'linear-gradient(to bottom, transparent, var(--accent-cyan), var(--accent-blue), var(--accent-purple), var(--accent-pink), transparent)' }}
+            className="absolute left-0 sm:left-4 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-amber-500/50 to-transparent"
           />
 
-          <div className="space-y-12 relative">
+          <div className="space-y-16 relative">
             {milestones.map((m) => (
               <div
                 key={m.year}
-                className="timeline-item relative flex items-start gap-8"
+                className="timeline-item relative pl-8 sm:pl-20"
               >
-                {/* Dot */}
-                <div className="absolute left-6 -translate-x-1/2 w-10 h-10 rounded-full flex items-center justify-center text-lg z-10 hidden sm:flex"
-                  style={{
-                    background: `var(--bg-primary)`,
-                    border: `2px solid ${m.color}`,
-                    boxShadow: `0 0 15px ${m.color}40`,
-                  }}
-                >
-                  <div className="w-2 h-2 rounded-full" style={{ background: m.color }} />
-                </div>
+                {/* Glowing Node */}
+                <div className="absolute left-[-5px] sm:left-[11px] top-10 w-3 h-3 rounded-full bg-amber-400 shadow-[0_0_15px_rgba(251,191,36,0.8)] z-10" />
 
-                {/* Content */}
-                <div className="w-full pl-16">
-                  <div className="glass-strong rounded-2xl p-8 glow-border relative">
-                    <div className="flex items-center gap-3 mb-4">
-                      <div className="p-2 rounded-lg bg-white/5 text-amber-500">
-                        {m.icon}
-                      </div>
-                      <span className="text-sm font-bold tracking-widest uppercase"
-                        style={{ color: m.color }}>
-                        {m.year}
-                      </span>
+                {/* Content card */}
+                <div className="glass-strong rounded-3xl p-8 sm:p-10 glow-border relative overflow-hidden group">
+                  {/* Giant background year watermark */}
+                  <div className="absolute -bottom-8 -right-4 text-9xl font-black text-white/[0.02] select-none group-hover:text-amber-500/[0.04] transition-colors duration-500 font-sans tracking-tighter">
+                    {m.year}
+                  </div>
+
+                  <div className="flex flex-col sm:flex-row items-start gap-6 relative z-10">
+                    <div className="p-4 rounded-2xl bg-white/5 border border-white/10 text-amber-500 shadow-inner hidden sm:block">
+                      {m.icon}
                     </div>
-                    <h3 className="font-bold text-xl mb-3" style={{ fontFamily: 'var(--font-heading)' }}>
-                      {m.title}
-                    </h3>
-                    <p className="text-sm text-white/50 leading-relaxed">{m.desc}</p>
+                    <div className="flex-1">
+                      <div className="flex items-center gap-3 mb-2">
+                        <span className="sm:hidden text-amber-500">{m.icon}</span>
+                        <span className="text-amber-500 font-bold tracking-widest text-sm uppercase">
+                          {m.year}
+                        </span>
+                      </div>
+                      <h3 className="font-bold text-2xl sm:text-3xl mb-4 text-white/90" style={{ fontFamily: 'var(--font-heading)' }}>
+                        {m.title}
+                      </h3>
+                      <p className="text-base sm:text-lg text-white/50 leading-relaxed max-w-xl">
+                        {m.desc}
+                      </p>
+                    </div>
                   </div>
                 </div>
               </div>
