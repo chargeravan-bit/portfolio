@@ -108,48 +108,35 @@ export default function TimelineSection() {
           </p>
         </div>
 
-        <div className="relative max-w-3xl">
+        <div className="relative max-w-4xl mx-auto">
           {/* Vertical line */}
           <div
             ref={lineRef}
-            className="absolute left-0 sm:left-4 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-amber-500/50 to-transparent"
+            className="absolute left-[15px] sm:left-[31px] top-0 bottom-0 w-[2px] bg-gradient-to-b from-transparent via-amber-500/50 to-transparent"
           />
 
-          <div className="space-y-16 relative">
+          <div className="space-y-12 sm:space-y-20 relative pt-10 pb-10">
             {milestones.map((m) => (
               <div
                 key={m.year}
-                className="timeline-item relative pl-8 sm:pl-20"
+                className="timeline-item relative pl-12 sm:pl-32"
               >
                 {/* Glowing Node */}
-                <div className="absolute left-[-5px] sm:left-[11px] top-10 w-3 h-3 rounded-full bg-amber-400 shadow-[0_0_15px_rgba(251,191,36,0.8)] z-10" />
+                <div className="absolute left-[7px] sm:left-[23px] top-1.5 sm:top-2 w-[18px] h-[18px] rounded-full bg-[#050505] border-[3px] border-amber-500 shadow-[0_0_15px_rgba(245,158,11,0.6)] z-10 transition-transform duration-300 hover:scale-125" />
 
-                {/* Content card */}
-                <div className="glass-strong rounded-3xl p-8 sm:p-10 glow-border relative overflow-hidden group">
-                  {/* Giant background year watermark */}
-                  <div className="absolute -bottom-8 -right-4 text-9xl font-black text-white/[0.02] select-none group-hover:text-amber-500/[0.04] transition-colors duration-500 font-sans tracking-tighter">
-                    {m.year}
+                {/* Content */}
+                <div className="relative group">
+                  <div className="flex flex-col sm:flex-row sm:items-baseline gap-1 sm:gap-6 mb-3 sm:mb-4">
+                    <span className="text-amber-500 font-bold tracking-widest text-xl sm:text-2xl" style={{ fontFamily: 'var(--font-heading)' }}>
+                      {m.year}
+                    </span>
+                    <h3 className="font-semibold text-xl sm:text-2xl text-white/90">
+                      {m.title}
+                    </h3>
                   </div>
-
-                  <div className="flex flex-col sm:flex-row items-start gap-6 relative z-10">
-                    <div className="p-4 rounded-2xl bg-white/5 border border-white/10 text-amber-500 shadow-inner hidden sm:block">
-                      {m.icon}
-                    </div>
-                    <div className="flex-1">
-                      <div className="flex items-center gap-3 mb-2">
-                        <span className="sm:hidden text-amber-500">{m.icon}</span>
-                        <span className="text-amber-500 font-bold tracking-widest text-sm uppercase">
-                          {m.year}
-                        </span>
-                      </div>
-                      <h3 className="font-bold text-2xl sm:text-3xl mb-4 text-white/90" style={{ fontFamily: 'var(--font-heading)' }}>
-                        {m.title}
-                      </h3>
-                      <p className="text-base sm:text-lg text-white/50 leading-relaxed max-w-xl">
-                        {m.desc}
-                      </p>
-                    </div>
-                  </div>
+                  <p className="text-sm sm:text-base text-white/50 leading-relaxed max-w-2xl">
+                    {m.desc}
+                  </p>
                 </div>
               </div>
             ))}
